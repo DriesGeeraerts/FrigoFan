@@ -8,8 +8,8 @@ int startT = 25;
 int maxT = 40;
 float tempratuur = 0;
 int vermogen = 0;
-int Celsius = 0;
-int Kelvin = 0;
+float Celsius = 0;
+float Kelvin = 0;
 int sensorvalue = 0;
 int temp = 0;
 
@@ -27,14 +27,13 @@ void setup() {
 void loop() {
   Kelvin = analogRead(sensor) * 0.489;      // Read analog voltage and convert it to Kelvin (0.489 = 500/1023)
   Celsius = Kelvin - 273;                      // Convert Kelvin to degree Celsius
-  Serial.print("dees is andere code   ");
-  Serial.println(Celsius);
-  sensorvalue = analogRead(sensor);
-  tempratuur = map(sensorvalue , 0, 1023 , -50 , 50);
-  Serial.print("mijn foute code      ");
-  Serial.println(tempratuur);
-  if (40 >tempratuur > 25){
-    temp = tempratuur - 25;
+  Serial.print("dit is pure waarde  ");
+  Serial.println(analogRead(sensor));
+  Serial.print("De tempratuur is: ");
+  Serial.print(Celsius);
+  Serial.println("°C");
+  if (40 >= Celsius >= 25){
+    temp = Celsius - 25;
     vermogen =map(temp , 0 ,15 , 0 ,255);
     analogWrite(motor,vermogen);
     digitalWrite(ledB, LOW);
@@ -42,7 +41,7 @@ void loop() {
     digitalWrite(ledR, LOW);
     
   }
-  else if (tempratuur < 40){
+  else if (Celsius < 40){
     analogWrite(motor, 255);
     digitalWrite(ledR, HIGH);
     digitalWrite(ledB, LOW);
@@ -54,5 +53,6 @@ void loop() {
     digitalWrite(ledR, LOW);
     digitalWrite(ledB, LOW);
   }
+  delay(1000);
   
 }
