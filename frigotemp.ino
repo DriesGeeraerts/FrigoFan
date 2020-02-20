@@ -37,13 +37,22 @@ void loop() {
     temp = tempratuur - 25;
     vermogen =map(temp , 0 ,15 , 0 ,255);
     analogWrite(motor,vermogen);
+    digitalWrite(ledB, LOW);
+    digitalWrite(ledG, HIGH);
+    digitalWrite(ledR, LOW);
     
   }
   else if (tempratuur < 40){
     analogWrite(motor, 255);
+    digitalWrite(ledR, HIGH);
+    digitalWrite(ledB, LOW);
+    digitalWrite(ledG, LOW);
   }
   else{
     analogWrite(motor,0);
+    digitalWrite(ledG, HIGH);
+    digitalWrite(ledR, LOW);
+    digitalWrite(ledB, LOW);
   }
   
 }
